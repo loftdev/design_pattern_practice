@@ -2,32 +2,33 @@ from abc import ABC
 
 
 class PhoneFactory(ABC):
-    def __init__(self, os):
-        self.os = os
 
-    def build(self):
-
-        if self.os == "ios":
-            IphoneBuilder(self.os).build()
-        elif self.os == "android":
-            SamsungBuilder(self.os).build()
+    @staticmethod
+    def create_phone(os):
+        if os == "ios":
+            IphoneBuilder().build()
+        elif os == "android":
+            SamsungBuilder().build()
         else:
-            print("We are not yet creating that phone")
+            print("we are only creating ios and android phone")
 
 
-class IphoneBuilder(PhoneFactory):
-    def build(self):
+class IphoneBuilder:
+    @staticmethod
+    def build():
         print("New iPhone made ")
 
 
-class SamsungBuilder(PhoneFactory):
-    def build(self):
+class SamsungBuilder:
+    @staticmethod
+    def build():
         print("New Samsung made")
 
 
 # test code
 
-client1 = PhoneFactory("ios")
-print(client1.build())
-client2 = PhoneFactory("android")
-print(client2.build())
+client1 = PhoneFactory()
+myphone = client1.create_phone("i")
+yourphone = client1.create_phone("android")
+
+
