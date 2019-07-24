@@ -1,34 +1,50 @@
 from abc import ABC
 
 
-class PhoneFactory(ABC):
+class PhoneCreator(ABC):
 
     @staticmethod
-    def create_phone(os):
+    def os_name(os):
         if os == "ios":
-            IphoneBuilder().build()
+            return IphoneCreator().create_phone()
         elif os == "android":
-            SamsungBuilder().build()
+            return AndroidCreator().create_phone()
         else:
             print("we are only creating ios and android phone")
 
+    def create_phone(self):
+        pass
 
-class IphoneBuilder:
-    @staticmethod
-    def build():
+
+class IphoneCreator(PhoneCreator):
+    def create_phone(self):
+        return IphoneBuilder().build()
+
+
+class AndroidCreator(PhoneCreator):
+    def create_phone(self):
+        return SamsungBuilder().build()
+
+
+class PhoneProduct:
+    def build(self):
+        pass
+
+
+class IphoneBuilder(PhoneProduct):
+    def build(self):
         print("New iPhone made ")
 
 
-class SamsungBuilder:
-    @staticmethod
-    def build():
+class SamsungBuilder(PhoneProduct):
+    def build(self):
         print("New Samsung made")
 
 
 # test code
 
-client1 = PhoneFactory()
-myphone = client1.create_phone("i")
-yourphone = client1.create_phone("android")
+client1 = PhoneCreator()
+myphone = client1.os_name("ios")
+yourphone = client1.os_name("android")
 
 
