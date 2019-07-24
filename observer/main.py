@@ -1,5 +1,5 @@
-from observable import Observable
-from observer import Subscriber1, Subscriber2
+from observer.observer import Observable
+from observer.observer import Subscriber1, Subscriber2
 
 # test code
 
