@@ -1,14 +1,16 @@
-from delegates import HouseBuilder, BrickBuilder, FoundationBuilder
+from delegates import HouseBuilderProtocol, BrickBuilder, FoundationBuilder
 
 
 class Foreman:
     def __init__(self):
-        self.worker = HouseBuilder()
+        self.worker = None
 
-    def make_bricks(self):
-        brick = BrickBuilder()
-        brick.build()
+    def set_worker(self, worker):
+        self.worker = worker
 
-    def build_foundation(self):
-        foundation = FoundationBuilder()
-        foundation.build()
+    def make_house(self):
+        self.worker.will_house_build()
+        self.worker.build()
+        self.worker.did_house_build()
+
+

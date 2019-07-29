@@ -1,14 +1,19 @@
-class HouseBuilder:
+class HouseBuilderProtocol:
 
-    def build(self):
-        pass
+    def will_house_build(self):
+        print("will start making house")
+
+    def did_house_build(self):
+        print("house making finished")
 
 
-class BrickBuilder(HouseBuilder):
+class BrickBuilder(HouseBuilderProtocol):
+
     def build(self):
         print("Now making the bricks")
 
 
-class FoundationBuilder(HouseBuilder):
+class FoundationBuilder(HouseBuilderProtocol):
+
     def build(self):
         print("Constructing the foundation")
